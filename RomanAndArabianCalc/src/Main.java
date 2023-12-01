@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+
+
 public class Main {
 
     static int result;
@@ -16,6 +18,10 @@ public class Main {
         int arabianCount = 0;
         int romanCount = 0;
         String[] array = input.split(" ");
+
+        if (array.length != 3) {
+            throw new IllegalArgumentException("Операндов должно быть 2!!! Ни больше, ни меньше!");
+        }
 
         try {
             for (int i = 0; i < arabianNumbers.length; i++) {
@@ -55,14 +61,16 @@ public class Main {
                 if (array[1].equals("+")) {
                     result = Integer.parseInt(array[0]) + Integer.parseInt(array[2]);
                 }
-                if (array[1].equals("-")) {
+                else if (array[1].equals("-")) {
                     result = Integer.parseInt(array[0]) - Integer.parseInt(array[2]);
                 }
-                if (array[1].equals("*")) {
+                else if (array[1].equals("*")) {
                     result = Integer.parseInt(array[0]) * Integer.parseInt(array[2]);
                 }
-                if (array[1].equals("/")) {
+                else if (array[1].equals("/")) {
                     result = Integer.parseInt(array[0]) / Integer.parseInt(array[2]);
+                } else {
+                    throw new IllegalArgumentException("Вы ввели неверную операцию! Список доступных операторов: '+', '-', '*', '/' ");
                 }
                 if (arabianCount == 2) {
                     return "Результат: " + result;
@@ -73,10 +81,9 @@ public class Main {
                         }
                     }
                 }
-            }
-            else {
-                return "Оба числа должны быть или арабскими или римскими!!!";
-            }
+            } else {
+                    return "Оба числа должны быть или арабскими или римскими!!!";
+                }
         } catch (ArrayIndexOutOfBoundsException e) {
             return "Ошибка ввода. Проверьте корректность вводимого выражения. \nТак же проверьте ставите ли вы пробелы между оператором и операндами.";
         }
